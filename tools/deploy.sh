@@ -1,6 +1,6 @@
 rm -rf dist/apps/http-server
 
-npx nx build host-app
+npx nx build host-app $1
 
 mkdir dist/apps/http-server
 cp -r dist/apps/host-app/* dist/apps/http-server

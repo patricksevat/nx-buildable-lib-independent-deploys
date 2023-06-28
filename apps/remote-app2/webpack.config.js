@@ -4,13 +4,24 @@ const { withModuleFederation } = require('@nx/react/module-federation');
 
 const baseConfig = require('./module-federation.config');
 
-const config = {
+const mfConfig = {
   ...baseConfig,
 };
 
 // Nx plugins for webpack to build config object from Nx options and context.
-module.exports = composePlugins(
-  withNx(),
-  withReact(),
-  withModuleFederation(config)
-);
+module.exports = async (config, context) => {
+  const webpackConfig = await composePlugins(
+    withNx(),
+    withReact(),
+    withModuleFederation(mfConfig)
+  )(config, context);
+
+  webpackConfig.optimization = {
+    chunkIds: 'named',
+    mangleExports: false,
+    moduleIds: 'named',
+    minimize: false,
+  }
+
+  return webpackConfig;
+};

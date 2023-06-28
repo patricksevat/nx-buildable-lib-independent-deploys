@@ -4,7 +4,7 @@ export interface BuildableLibProps {}
 export function BuildableLib(props: BuildableLibProps) {
   return (
     <div>
-      <h1>Welcome to BuildableLib!</h1>
+      <h1>Welcome to BuildableLib1.0.0!</h1>
     </div>
   );
 }
