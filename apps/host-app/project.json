@@ -101,5 +101,6 @@
       }
     }
   },
-  "tags": []
+  "tags": [],
+  "implicitDependencies": ["remote-app1", "remote-app2"]
 }

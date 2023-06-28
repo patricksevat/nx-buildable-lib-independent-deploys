@@ -24,8 +24,8 @@ const prodConfig = {
    * ]
    */
   remotes: [
-    ['remote-app1', 'http://localhost:4201/'],
-    ['remote-app2', 'http://localhost:4202/'],
+    ['remote-app1', '/remote-app1/remoteEntry.js'],
+    ['remote-app2', '/remote-app2/remoteEntry.js'],
   ],
 };
 
