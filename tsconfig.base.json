@@ -15,7 +15,24 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@myorg/buildable-lib": ["libs/buildable-lib/src/index.ts"]
+      "@myorg/buildable-lib": [
+
+        // TODO: find an elegant way to switch these.
+        // When building/serving we would like to point to dist folder
+        // However when using the IDE, we'd like to Go To Definition to libs
+        //
+        // Possible options:
+        // - Second tsconfig.base.json (tsconfig.dev.base.json or tsconfig.dist.base.json)
+        //   - But that would mean that all projects need to update project.json and their tsconfig files
+        // - Webpack resolver override (but then also needs to be implemented for Rollup, Vite, Esbuild (?))
+        //   - Also don't want to interfere with TsconfigPathsPlugin
+        // - https://github.com/c-vetter/tsconfig.js
+
+        // Also wondering why the module alias points to libs and not dist/libs in the first place
+        // does not seem to make sense for a buildable lib. Does Nx perhaps already do this switch in the background?
+        "dist/libs/buildable-lib",
+        "libs/buildable-lib/src/index.ts",
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
