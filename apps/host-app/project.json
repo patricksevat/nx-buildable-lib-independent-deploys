@@ -8,6 +8,7 @@
       "executor": "@nx/webpack:webpack",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
+      "inputs": [{ "dependentTasksOutputFiles": "**/*.d.ts", "transitive": true }],
       "options": {
         "compiler": "babel",
         "outputPath": "dist/apps/host-app",
