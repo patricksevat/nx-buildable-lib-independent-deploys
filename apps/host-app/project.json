@@ -19,7 +19,8 @@
         "styles": ["apps/host-app/src/styles.css"],
         "scripts": [],
         "isolatedConfig": true,
-        "webpackConfig": "apps/host-app/webpack.config.js"
+        "webpackConfig": "apps/host-app/webpack.config.js",
+        "buildLibsFromSource": false
       },
       "configurations": {
         "development": {

@@ -62,7 +62,6 @@ function getAdditionalShared(dependencies) {
  * @param { number } [options.pathAliasIndex]
  * */
 function getRequiredVersionForLib(depName, options = {}) {
-  debugger;
   const tsconfig = require(options.tsconfigPath ||
     path.join(rootDir, './tsconfig.base.json'));
   const { compilerOptions } = tsconfig;

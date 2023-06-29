@@ -22,7 +22,8 @@
         "styles": ["apps/remote-app2/src/styles.css"],
         "scripts": [],
         "isolatedConfig": true,
-        "webpackConfig": "apps/remote-app2/webpack.config.js"
+        "webpackConfig": "apps/remote-app2/webpack.config.js",
+        "buildLibsFromSource": false
       },
       "configurations": {
         "development": {
