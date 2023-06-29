@@ -13,6 +13,12 @@ module.exports = async (config, context) => {
   const webpackConfig = await composePlugins(
     withNx(),
     withReact(),
+    // TODO: will throw warnings:
+    // Could not find a version for "react" in the root "package.json" when collecting shared packages for the Module Federation setup. The package will not be shared.
+    // https://github.com/nrwl/nx/blob/master/packages/devkit/src/utils/module-federation/share.ts#L105 
+    //
+    // We offset this by doing the reading of <projectRoot>/package.json dependencies ourselves
+    // But should be fixed in Nx 
     withModuleFederation(mfConfig)
   )(config, context);
 
@@ -22,10 +28,6 @@ module.exports = async (config, context) => {
     moduleIds: 'named',
     minimize: false,
   }
-
-  // At this point in configuration @myorg/buildable-lib is already added to 
-  // ModuleFederationPlugin.shared with {requiredVersion: false,eager: undefined,}
-  // So independently deploying will still pick up only 1 version
 
   return webpackConfig;
 };

@@ -6,6 +6,9 @@ import dts from 'vite-plugin-dts';
 import * as path from 'path';
 import { copyPackageJsonWithVersionHash } from '../../tools/buildable-libs/copy-package-json-with-version-hash';
 
+import libPackageJson from './package.json';
+const typedLibPackageJson = libPackageJson as unknown as { peerDependencies?: Record<string, string> }
+
 export default defineConfig({
   cacheDir: '../../node_modules/.vite/buildable-lib',
 
@@ -47,7 +50,12 @@ export default defineConfig({
     },
     rollupOptions: {
       // External packages that should not be bundled into your library.
-      external: ['react', 'react-dom', 'react/jsx-runtime'],
+      external: [
+        ...Object.keys(typedLibPackageJson.peerDependencies || {}),
+        'react',
+        'react-dom',
+        'react/jsx-runtime',
+      ],
     },
   },
 });
