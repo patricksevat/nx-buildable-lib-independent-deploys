@@ -11,7 +11,7 @@
   "targetDefaults": {
     "build": {
       "dependsOn": ["^build"],
-      "inputs": ["production", "^production"]
+      "inputs": ["production", "^production", "depsDeclarationFiles"]
     },
     "e2e": {
       "inputs": ["default", "^production"]
@@ -36,7 +36,8 @@
       "!{projectRoot}/tsconfig.spec.json",
       "!{projectRoot}/jest.config.[jt]s"
     ],
-    "sharedGlobals": []
+    "sharedGlobals": [],
+    "depsDeclarationFiles": [{ "dependentTasksOutputFiles": "**/*.d.ts", "transitive": true }]
   },
   "generators": {
     "@nx/react": {
