@@ -4,6 +4,7 @@ import react from '@vitejs/plugin-react';
 import viteTsConfigPaths from 'vite-tsconfig-paths';
 import dts from 'vite-plugin-dts';
 import * as path from 'path';
+import { copyPackageJsonWithVersionHash } from '../../tools/buildable-libs/copy-package-json-with-version-hash';
 
 export default defineConfig({
   cacheDir: '../../node_modules/.vite/buildable-lib',
@@ -13,6 +14,9 @@ export default defineConfig({
       entryRoot: 'src',
       tsConfigFilePath: path.join(__dirname, 'tsconfig.lib.json'),
       skipDiagnostics: true,
+      afterBuild: async () => {
+        await copyPackageJsonWithVersionHash('buildable-lib');
+      },
     }),
     react(),
     viteTsConfigPaths({
